@@ -1,4 +1,4 @@
-package User;
+package com.example.datingnlmbackend.User;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
