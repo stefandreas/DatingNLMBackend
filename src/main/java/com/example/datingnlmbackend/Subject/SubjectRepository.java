@@ -1,9 +1,8 @@
-package User;
+package com.example.datingnlmbackend.Subject;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
+public interface SubjectRepository extends JpaRepository<Subject,Long> {
 }
