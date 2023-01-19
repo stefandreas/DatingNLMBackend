@@ -1,12 +1,6 @@
 package com.example.datingnlmbackend.User;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class UserService implements UserServiceInterface {
@@ -36,34 +30,21 @@ public class UserService implements UserServiceInterface {
     }
 
     //metod för registrering://
-    public User register(User registerUser) {
-        ArrayList<User> users = (ArrayList<User>) userRepository.findAll();
-        for (User user : users) {
-            if (user.getUsername().equals(registerUser.getUsername())) {
-                return null;
-            }
-            user = new User();
-            user.setFirstname(registerUser.getFirstname());
-            user.setLastname(registerUser.getLastname());
-            user.setUsername(registerUser.getUsername());
-            user.setEmail(registerUser.getEmail());
-            user.setPassword(registerUser.getPassword());
-            userRepository.save(registerUser);
+    public User register(String firstname, String lastname, String username, String email, String password) {
+        if(userRepository.existsByUsernameAndEmail(username, email)){
+            return null;
         }
-        return registerUser;
+        User user = new User();
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setUsername(username);
+        user.setEmail(email);
+        user.setPassword(password);
+
+        userRepository.save(user);
+        return user;
     }
 }
-
-    //metod som kollar om användaren är registrerad://
-   /* public boolean ifUsernameExist(String username){
-        User user = userRepository.getUsername(username);
-        if (user != null) {
-            return true;
-        }
-        return false;
-    }
-
-    */
 
 
 
