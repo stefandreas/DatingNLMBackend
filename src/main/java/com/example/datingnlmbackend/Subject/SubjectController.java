@@ -20,4 +20,5 @@ public class SubjectController {
     ResponseEntity<Subject> save(String subject) {
         return new ResponseEntity<>(subjectService.save(subject), HttpStatus.CREATED);
     }
+
 }

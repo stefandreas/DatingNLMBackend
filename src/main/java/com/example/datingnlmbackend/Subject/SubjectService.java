@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class SubjectService implements SubjectServiceInterface{
 
     private SubjectRepository subjectRepository;
-    private String[] subjects = {"Math", "History", "Space", "Art"};
+    private String[] subjects = {"Math", "History", "Space", "Art", "War", "Soccer"};
 
     public SubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
