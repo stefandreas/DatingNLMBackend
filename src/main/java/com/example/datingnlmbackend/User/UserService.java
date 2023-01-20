@@ -31,7 +31,7 @@ public class UserService implements UserServiceInterface {
 
     //metod för registrering://
     public User register(String firstname, String lastname, String username, String email, String password) {
-        if(userRepository.existsByUsernameAndEmail(username, email)){
+        if(userRepository.existsUserByUsername(username) || userRepository.existsUserByEmail(email)){
             return null;
         }
         User user = new User();
