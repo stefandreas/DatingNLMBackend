@@ -16,9 +16,18 @@ public class UserService implements UserServiceInterface{
     public User findUserById(Long userId){
        return userRepository.findUserById(userId);
     }
-    public ResponseEntity<User> updateUser(User user){
-        User updated = userRepository.findUserById(user.getId());
-        updated = user;
-        return new ResponseEntity<>(userRepository.save(updated), HttpStatus.ACCEPTED);
+    public User findUserByFirstnameAndLastname(String firstname, String lastname){
+        return userRepository.findUserByFirstnameAndLastname(firstname,lastname);
+    }
+    public void save(User user){
+        userRepository.save(user);
+    }
+    public ResponseEntity<User> updateUser(User updatedUser){
+        return new ResponseEntity<>(userRepository.save(updatedUser), HttpStatus.ACCEPTED);
+    }
+    public String deleteUser(User user){
+        User userToDelete = findUserById(user.getId());
+        userRepository.delete(userToDelete);
+        return "User "+user.getFirstname()+" "+user.getLastname()+" was deleted!";
     }
 }
