@@ -1,7 +1,10 @@
 package com.example.datingnlmbackend.User;
 
-public interface UserServiceInterface {
-    User login(String username, String password);
+import com.example.datingnlmbackend.Qualification.Qualification;
 
-    User register(String firstname, String lastname, String username, String email, String password);
+import java.util.List;
+
+public interface UserServiceInterface {
+    //User register(User user, List<String> qualifications);
+    User saveUserWithQualifications(UserDTO userDTO);
 }
