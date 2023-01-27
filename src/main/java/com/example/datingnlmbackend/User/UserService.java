@@ -3,6 +3,8 @@ package com.example.datingnlmbackend.User;
 import com.example.datingnlmbackend.Qualification.Qualification;
 import com.example.datingnlmbackend.Qualification.QualificationRepository;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,40 +43,21 @@ public class UserService implements UserServiceInterface {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User findUserById(Long userId){
+       return userRepository.findUserById(userId);
+    }
+    public User findUserByFirstnameAndLastname(String firstname, String lastname){
+        return userRepository.findUserByFirstnameAndLastname(firstname,lastname);
+    }
+    public void save(User user){
+        userRepository.save(user);
+    }
+    public ResponseEntity<User> updateUser(User updatedUser){
+        return new ResponseEntity<>(userRepository.save(updatedUser), HttpStatus.ACCEPTED);
+    }
+    public String deleteUser(User user){
+        User userToDelete = findUserById(user.getId());
+        userRepository.delete(userToDelete);
+        return "User "+user.getFirstname()+" "+user.getLastname()+" was deleted!";
+    }
 }
-
-
-
-    /*@Override
-    public User login(String username, String password) {
-        return null;
-    }
-
-     */
-
-    //metod för registrering://
-   /* public User register(User user, List<String> qualifications) {
-        User savedUser = userRepository.save(user);
-
-        List<Qualification> qualificationsList = qualificationRepository.findAll(qualifications);
-        List<UserQualification> userQualifications = qualificationsList.stream()
-                .map(q -> {
-                    UserQualification uq = new UserQualification();
-                    uq.setUser(savedUser);
-                    uq.setQualification(q);
-                    return uq;
-                })
-                .collect(Collectors.toList());
-        userQualificationRepository.saveAll(userQualifications);
-
-        return savedUser;
-    }
-
-    */
-
-
-
-
-
-
-
