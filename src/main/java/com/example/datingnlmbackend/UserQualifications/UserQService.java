@@ -22,15 +22,16 @@ public class UserQService implements UserQServiceInterface{
     }
 
     @Override
-    public void save(UserQualifications userQualifications) {
+    public String save(UserQualifications userQualifications) {
         userQRepository.save(userQualifications);
+            return "User Qualification saved";
     }
 
     @Override
     public List<UserQualifications> findAll() {
         return userQRepository.findAll();
     }
-
+/*
     @Override
     public ArrayList<User> findAllUsersWithSpecificQualification(String q) {
         ArrayList<UserQualifications> arrayList = (ArrayList<UserQualifications>) userQRepository.findAll();
@@ -43,13 +44,26 @@ public class UserQService implements UserQServiceInterface{
         }
         return userArrayList;
     }
-
+*/
+@Override
+public List<User> findAllUsersWithSpecificQualification(String q) {
+    List<UserQualifications> arrayList = userQRepository.findAll();
+    List<User> userArrayList = new ArrayList<>();
+    for (UserQualifications userQualifications:arrayList) {
+        if(userQualifications.q1.equals(q) || userQualifications.q2.equals(q) || userQualifications.q3.equals(q) ||
+                userQualifications.q4.equals(q) || userQualifications.q5.equals(q)){
+            User user = userRepository.findUserById(userQualifications.userId);
+            userArrayList.add(user);
+        }
+    }
+    return userArrayList;
+}
     @Override
     public List<User> findAllUsersWithXNrQualifications(ArrayList<String> qualificationArray) {
         ArrayList<User> userArrayListTotal = new ArrayList<>();
         int size = qualificationArray.size();
         for(int i = 0; i < size; i++){
-            ArrayList<User> userArrayList = findAllUsersWithSpecificQualification(qualificationArray.get(i));
+            List<User> userArrayList = findAllUsersWithSpecificQualification(qualificationArray.get(i));
             userArrayListTotal.addAll(userArrayList);
         }
         ArrayList<User> returnArrayList = new ArrayList<>();

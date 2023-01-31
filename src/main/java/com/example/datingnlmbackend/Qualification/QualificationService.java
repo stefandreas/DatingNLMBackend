@@ -6,15 +6,13 @@ import org.springframework.stereotype.Service;
 public class QualificationService implements QualificationServiceInterface {
 
     private QualificationRepository qualificationsRepository;
-    //private String[] qualifications = {"Math", "History", "Space", "Art"};
+    private String[] qualifications = {"Math", "History", "Space", "Art"};
 
     public QualificationService(QualificationRepository qualificationsRepository) {
         this.qualificationsRepository = qualificationsRepository;
-        /*for (String qualification: qualifications) {
+        for (String qualification: qualifications) {
             save(qualification);
         }
-
-         */
     }
 
     @Override

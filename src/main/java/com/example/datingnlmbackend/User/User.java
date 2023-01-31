@@ -1,6 +1,7 @@
 package com.example.datingnlmbackend.User;
 
 import com.example.datingnlmbackend.Qualification.Qualification;
+import com.example.datingnlmbackend.UserQualifications.UserQualifications;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -12,30 +13,46 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
-    private String username;
-    @Column(unique = true)
-    private String email;
-    private String password;
-    private String gender;
     private String city;
     private String description;
+    @Column(unique = true)
+    private String email;
+    private String firstname;
+    private String gender;
+    private String lastname;
+    private String password;
+    @Column(unique = true)
+    private String username;
 
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_qualification",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "qualification_id"))
-    private List<Qualification> qualifications;
-
-    public List<Qualification> getQualifications() {
-        return qualifications;
+    public User(String city, String description, String email, String firstname, String gender, String lastname, String password, String username) {
+        this.city = city;
+        this.description = description;
+        this.email = email;
+        this.firstname = firstname;
+        this.gender = gender;
+        this.lastname = lastname;
+        this.password = password;
+        this.username = username;
     }
 
-    public void setQualifications(List<Qualification> qualifications) {
-        this.qualifications = qualifications;
+    public User() {
     }
+
+    /*
+            @ManyToMany(cascade = CascadeType.ALL)
+            @JoinTable(name = "user_qualification",
+                    joinColumns = @JoinColumn(name = "user_id"),
+                    inverseJoinColumns = @JoinColumn(name = "qualification_id"))
+            private List<Qualification> qualifications;
+
+            public List<Qualification> getQualifications() {
+                return qualifications;
+            }
+
+            public void setQualifications(List<Qualification> qualifications) {
+                this.qualifications = qualifications;
+            }
+         */
     public String getGender() {
         return gender;
     }

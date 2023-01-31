@@ -13,7 +13,7 @@ public interface UserServiceInterface {
     User getUserById(Long id);
     User findUserById(Long userId);
     User findUserByFirstnameAndLastname(String firstname, String lastname);
-    void save(User user);
+    String save(User user);
     ResponseEntity<User> updateUser(User updatedUser);
     String deleteUser(User user);
 }

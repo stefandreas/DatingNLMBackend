@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 public class UserQualifications {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
     Long id;
     String q1;
     String q2;
@@ -26,6 +25,14 @@ public class UserQualifications {
     }
 
     public UserQualifications() {
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getId() {
@@ -76,11 +83,4 @@ public class UserQualifications {
         this.q5 = q5;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 }

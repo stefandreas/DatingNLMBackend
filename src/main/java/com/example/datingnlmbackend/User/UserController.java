@@ -2,6 +2,8 @@ package com.example.datingnlmbackend.User;
 
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,30 +38,30 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
 @GetMapping("/findUserById")
-    User findUserById(Long userId){
-        return userService.findUserById(userId);
+    public User findUserById(Long id){
+        return userService.findUserById(id);
 }
 @GetMapping("/findUserByFirstnameAndLastname")
-    User findUserByFirstnameAndLastname(String firstname, String lastname){
+    public User findUserByFirstnameAndLastname(String firstname, String lastname){
         return userService.findUserByFirstnameAndLastname(firstname,lastname);
 }
-@PostMapping("/saveUser")
-    void save(@RequestBody User user){
-        userService.save(user);
+
+@GetMapping("/match")
+    public int matchWithProfile(Long userId, Long visitedProfileId){
+        return userService.matchWithProfile(userId,visitedProfileId);
+}
+
+@PostMapping(value = "/saveUser",consumes = "application/json")
+    public String save(@RequestBody User user ){
+        return userService.save(user);
 }
 @PostMapping("/updateUser")
-    ResponseEntity<User>updateUser(@RequestBody User user){
+    public ResponseEntity<User>updateUser(@RequestBody User user){
         return userService.updateUser(user);
 }
 @DeleteMapping("/deleteUser")
-    String deleteUser(@RequestBody User user){
+    public String deleteUser(@RequestBody User user){
         return userService.deleteUser(user);
     }
-
 }
