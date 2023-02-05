@@ -28,14 +28,29 @@ public class UserService implements UserServiceInterface {
         User user = new User();
         user.setFirstname(userDTO.getFirstname());
         user.setLastname(userDTO.getLastname());
+        user.setUsername(userDTO.getUsername());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setGender(userDTO.getGender());
+        user.setCity(userDTO.getCity());
+        user.setDescription(userDTO.getDescription());
+
         List<Qualification> qualifications = new ArrayList<>();
+        List<Qualification> prefferedQualifications = new ArrayList<>();
         for (String qual : userDTO.getQualifications()) {
             Qualification qualification = qualificationRepository.findByQualification(qual);
             if (qualification != null) {
                 qualifications.add(qualification);
             }
         }
+        for (String prefferdQual: userDTO.getPreferredQualifications()) {
+            Qualification prefferedQualification = qualificationRepository.findByQualification(prefferdQual);
+            if(prefferedQualification != null) {
+                prefferedQualifications.add(prefferedQualification);
+            }
+        }
         user.setQualifications(qualifications);
+        user.setPreferredQualifications(prefferedQualifications);
         return userRepository.save(user);
     }
 
