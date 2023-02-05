@@ -16,8 +16,4 @@ public class QualificationController {
         this.qualificationService = qualificationService;
     }
 
-    @PostMapping("/save")
-    ResponseEntity<Qualification> save(String qualification) {
-        return new ResponseEntity<>(qualificationService.save(qualification), HttpStatus.CREATED);
-    }
 }

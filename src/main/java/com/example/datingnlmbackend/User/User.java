@@ -29,12 +29,27 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "qualification_id"))
     private List<Qualification> qualifications;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_preferred_qualification",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "qualification_id"))
+    private List<Qualification> preferredQualifications;
+
+
     public List<Qualification> getQualifications() {
         return qualifications;
     }
 
     public void setQualifications(List<Qualification> qualifications) {
         this.qualifications = qualifications;
+    }
+
+    public List<Qualification> getPreferredQualifications() {
+        return preferredQualifications;
+    }
+
+    public void setPreferredQualifications(List<Qualification> preferredQualifications) {
+        this.preferredQualifications = preferredQualifications;
     }
     public String getGender() {
         return gender;
@@ -59,8 +74,6 @@ public class User {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public Long getId() {
         return id;

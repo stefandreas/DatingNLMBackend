@@ -1,6 +1,6 @@
 package com.example.datingnlmbackend.UserQualification;
 
-import com.example.datingnlmbackend.Qualification.Qualification;
+/*import com.example.datingnlmbackend.Qualification.Qualification;
 import com.example.datingnlmbackend.User.User;
 import jakarta.persistence.*;
 
@@ -44,4 +44,8 @@ public class UserQualification {
     public void setQualification(Qualification qualification) {
         this.qualification = qualification;
     }
+
 }
+
+
+ */

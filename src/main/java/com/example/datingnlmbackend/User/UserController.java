@@ -1,20 +1,15 @@
 package com.example.datingnlmbackend.User;
 
-import java.util.List;
-import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.datingnlmbackend.Qualification.Qualification;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
-
     UserService userService;
 
     public UserController(UserService userService) {
@@ -34,11 +29,6 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-    UserService userService;
-    public UserController(UserService userService) {
-        this.userService = userService;
     }
 
 @GetMapping("/findUserById")
