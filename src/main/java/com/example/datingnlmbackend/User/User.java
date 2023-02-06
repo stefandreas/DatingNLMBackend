@@ -1,10 +1,8 @@
 package com.example.datingnlmbackend.User;
 
 import com.example.datingnlmbackend.Qualification.Qualification;
+import com.example.datingnlmbackend.UserQualifications.UserQualifications;
 import jakarta.persistence.*;
-
-import java.util.List;
-
 
 @Entity
 public class User {
@@ -12,45 +10,54 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstname;
-    private String lastname;
-    private String username;
-    @Column(unique = true)
-    private String email;
-    private String password;
-    private String gender;
     private String city;
     private String description;
+    @Column(unique = true)
+    private String email;
+    private String firstname;
+    private String gender;
+    private String lastname;
+    @Column(unique = true)
+    private String username;
 
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_qualification",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "qualification_id"))
-    private List<Qualification> qualifications;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_preferred_qualification",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "qualification_id"))
-    private List<Qualification> preferredQualifications;
-
-
-    public List<Qualification> getQualifications() {
-        return qualifications;
+    public User(String city, String description, String email, String firstname, String gender, String lastname, String username) {
+        this.city = city;
+        this.description = description;
+        this.email = email;
+        this.firstname = firstname;
+        this.gender = gender;
+        this.lastname = lastname;
+        this.username = username;
     }
 
-    public void setQualifications(List<Qualification> qualifications) {
-        this.qualifications = qualifications;
+    public User() {
+    }
+    public void update(User user){
+        this.id = user.id;
+        this.city = user.city;
+        this.description = user.description;
+        this.email = user.email;
+        this.firstname = user.firstname;
+        this.gender = user.gender;
+        this.lastname = user.lastname;
+        this.username = user.username;
     }
 
-    public List<Qualification> getPreferredQualifications() {
-        return preferredQualifications;
-    }
+    /*
+            @ManyToMany(cascade = CascadeType.ALL)
+            @JoinTable(name = "user_qualification",
+                    joinColumns = @JoinColumn(name = "user_id"),
+                    inverseJoinColumns = @JoinColumn(name = "qualification_id"))
+            private List<Qualification> qualifications;
 
-    public void setPreferredQualifications(List<Qualification> preferredQualifications) {
-        this.preferredQualifications = preferredQualifications;
-    }
+            public List<Qualification> getQualifications() {
+                return qualifications;
+            }
+
+            public void setQualifications(List<Qualification> qualifications) {
+                this.qualifications = qualifications;
+            }
+         */
     public String getGender() {
         return gender;
     }
@@ -110,10 +117,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {return password; }
-
-    public void setPassword(String password) {this.password = password; }
-
 
 }

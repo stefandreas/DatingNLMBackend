@@ -2,6 +2,9 @@ package com.example.datingnlmbackend.UserQualifications;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class UserQualifications {
     @Id
@@ -81,6 +84,15 @@ public class UserQualifications {
 
     public void setQ5(String q5) {
         this.q5 = q5;
+    }
+    public List<String> getAllQualifications(){
+        List<String> listQualifications = new ArrayList<>();
+        listQualifications.add(q1);
+        listQualifications.add(q2);
+        listQualifications.add(q3);
+        listQualifications.add(q4);
+        listQualifications.add(q5);
+        return listQualifications;
     }
 
 }

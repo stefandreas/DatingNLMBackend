@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserQService implements UserQServiceInterface{
@@ -19,6 +20,11 @@ public class UserQService implements UserQServiceInterface{
 
     public UserQualifications findUserQualificationsByUserId(Long userId){
         return userQRepository.findUserQualificationsByUserId(userId);
+    }
+
+    @Override
+    public Optional<UserQualifications> findUserQualificationsById(Long id) {
+        return userQRepository.findById(id);
     }
 
     @Override
@@ -117,5 +123,19 @@ public List<User> findAllUsersWithSpecificQualification(String q) {
             }
         }
         return returnArrayList;
+    }
+
+    public String changeQualifications(UserQualifications userQualifications) {
+        Long id = userQualifications.getId();
+        Optional<UserQualifications> optional = findUserQualificationsById(id);
+        UserQualifications userQ = optional.get();
+        System.out.println(userQ.q1);
+        userQ.q1 = userQualifications.q1;
+        userQ.q2 = userQualifications.q2;
+        userQ.q3 = userQualifications.q3;
+        userQ.q4 = userQualifications.q4;
+        userQ.q5 = userQualifications.q5;
+        userQRepository.save(userQ);
+            return "Qualifications have been changed";
     }
 }

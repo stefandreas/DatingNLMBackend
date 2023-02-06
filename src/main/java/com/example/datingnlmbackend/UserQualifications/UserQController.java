@@ -35,4 +35,8 @@ public class UserQController {
             public List<User> findAllUsersWithXNrQualifications(ArrayList<String> qualificationArray){
                 return userQService.findAllUsersWithXNrQualifications(qualificationArray);
         }
+        @PostMapping("/changeQualifications")
+            public String changeQualifications(@RequestBody UserQualifications userQualifications){
+                return userQService.changeQualifications(userQualifications);
+        }
 }
