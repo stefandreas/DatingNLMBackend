@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 public interface UserServiceInterface {
     //User register(User user, List<String> qualifications);
     User saveUserWithQualifications(UserDTO userDTO);
-
     User getUserById(Long id);
     User findUserById(Long userId);
     User findUserByFirstnameAndLastname(String firstname, String lastname);

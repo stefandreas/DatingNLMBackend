@@ -9,6 +9,7 @@ public class Qualification {
     private Long id;
     @Column(unique = true)
     private String qualification;
+    
     public Qualification(String qualification) {
         this.qualification = qualification;
     }

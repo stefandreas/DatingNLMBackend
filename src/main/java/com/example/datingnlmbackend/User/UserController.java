@@ -1,22 +1,15 @@
 package com.example.datingnlmbackend.User;
 
-import java.util.List;
-import java.util.Map;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.datingnlmbackend.Qualification.Qualification;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
-
     UserService userService;
 
     public UserController(UserService userService) {
@@ -39,29 +32,24 @@ public class UserController {
     }
 
 @GetMapping("/findUserById")
-    public User findUserById(Long id){
-        return userService.findUserById(id);
+    User findUserById(Long userId){
+        return userService.findUserById(userId);
 }
 @GetMapping("/findUserByFirstnameAndLastname")
-    public User findUserByFirstnameAndLastname(String firstname, String lastname){
+    User findUserByFirstnameAndLastname(String firstname, String lastname){
         return userService.findUserByFirstnameAndLastname(firstname,lastname);
 }
-
-@GetMapping("/match")
-    public int matchWithProfile(Long userId, Long visitedProfileId){
-        return userService.matchWithProfile(userId,visitedProfileId);
-}
-
-@PostMapping(value = "/saveUser",consumes = "application/json")
-    public String save(@RequestBody User user ){
-        return userService.save(user);
+@PostMapping("/saveUser")
+    void save(@RequestBody User user){
+        userService.save(user);
 }
 @PostMapping("/updateUser")
-    public ResponseEntity<User>updateUser(@RequestBody User user){
+    ResponseEntity<User>updateUser(@RequestBody User user){
         return userService.updateUser(user);
 }
 @DeleteMapping("/deleteUser")
-    public String deleteUser(@RequestBody User user){
+    String deleteUser(@RequestBody User user){
         return userService.deleteUser(user);
     }
+
 }
