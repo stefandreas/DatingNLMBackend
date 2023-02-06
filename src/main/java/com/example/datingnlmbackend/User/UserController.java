@@ -57,7 +57,7 @@ public class UserController {
         return userService.save(user);
 }
 @PostMapping("/updateUser")
-    public ResponseEntity<User>updateUser(@RequestBody User user){
+    public String updateUser(@RequestBody User user){
         return userService.updateUser(user);
 }
 @DeleteMapping("/deleteUser")

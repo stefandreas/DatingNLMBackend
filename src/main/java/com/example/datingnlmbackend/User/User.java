@@ -4,9 +4,6 @@ import com.example.datingnlmbackend.Qualification.Qualification;
 import com.example.datingnlmbackend.UserQualifications.UserQualifications;
 import jakarta.persistence.*;
 
-import java.util.List;
-
-
 @Entity
 public class User {
 
@@ -20,22 +17,30 @@ public class User {
     private String firstname;
     private String gender;
     private String lastname;
-    private String password;
     @Column(unique = true)
     private String username;
 
-    public User(String city, String description, String email, String firstname, String gender, String lastname, String password, String username) {
+    public User(String city, String description, String email, String firstname, String gender, String lastname, String username) {
         this.city = city;
         this.description = description;
         this.email = email;
         this.firstname = firstname;
         this.gender = gender;
         this.lastname = lastname;
-        this.password = password;
         this.username = username;
     }
 
     public User() {
+    }
+    public void update(User user){
+        this.id = user.id;
+        this.city = user.city;
+        this.description = user.description;
+        this.email = user.email;
+        this.firstname = user.firstname;
+        this.gender = user.gender;
+        this.lastname = user.lastname;
+        this.username = user.username;
     }
 
     /*
@@ -77,8 +82,6 @@ public class User {
         this.description = description;
     }
 
-
-
     public Long getId() {
         return id;
     }
@@ -114,10 +117,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPassword() {return password; }
-
-    public void setPassword(String password) {this.password = password; }
-
 
 }

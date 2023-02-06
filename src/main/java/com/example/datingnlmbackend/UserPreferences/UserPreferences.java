@@ -2,6 +2,9 @@ package com.example.datingnlmbackend.UserPreferences;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class UserPreferences {
     @Id
@@ -81,5 +84,14 @@ public class UserPreferences {
 
     public void setP5(String p5) {
         this.p5 = p5;
+    }
+    public List<String> getAllPreferences(){
+        List<String> listPreferences = new ArrayList<>();
+        listPreferences.add(p1);
+        listPreferences.add(p2);
+        listPreferences.add(p3);
+        listPreferences.add(p4);
+        listPreferences.add(p5);
+        return listPreferences;
     }
 }

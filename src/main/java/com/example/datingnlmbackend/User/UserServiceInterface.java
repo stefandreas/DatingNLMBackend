@@ -14,6 +14,6 @@ public interface UserServiceInterface {
     User findUserById(Long userId);
     User findUserByFirstnameAndLastname(String firstname, String lastname);
     String save(User user);
-    ResponseEntity<User> updateUser(User updatedUser);
+    String updateUser(User updatedUser);
     String deleteUser(User user);
 }

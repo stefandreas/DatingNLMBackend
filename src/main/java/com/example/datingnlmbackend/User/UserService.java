@@ -61,33 +61,31 @@ public class UserService implements UserServiceInterface {
     public int matchWithProfile(Long userId, Long visitedProfileId){
         UserQualifications userQualifications = userQRepository.findUserQualificationsByUserId(userId);
         UserPreferences userPreferences = userPrefRepository.findUserPreferencesByUserId(visitedProfileId);
+        List<String> arrayPreferences = userPreferences.getAllPreferences();
         int matchScore = 0;
 
+        if(arrayPreferences.contains(userQualifications.getQ1())){
+            matchScore += 20;
+        }
+        if(arrayPreferences.contains(userQualifications.getQ2())){
+            matchScore += 20;
+        }
+        if(arrayPreferences.contains(userQualifications.getQ3())){
+            matchScore += 20;
+        }
+        if(arrayPreferences.contains(userQualifications.getQ4())){
+            matchScore += 20;
+        }
+        if(arrayPreferences.contains(userQualifications.getQ5())){
+            matchScore += 20;
+        }
+        /*
         if(userQualifications.getQ1().equals(userPreferences.getP1()) || userQualifications.getQ1().equals(userPreferences.getP2()) ||
                 userQualifications.getQ1().equals(userPreferences.getP3()) || userQualifications.getQ1().equals(userPreferences.getP4()) ||
                         userQualifications.getQ1().equals(userPreferences.getP5())){
             matchScore += 20;
         }
-        if(userQualifications.getQ2().equals(userPreferences.getP1()) || userQualifications.getQ2().equals(userPreferences.getP2()) ||
-                userQualifications.getQ2().equals(userPreferences.getP3()) || userQualifications.getQ2().equals(userPreferences.getP4()) ||
-                userQualifications.getQ2().equals(userPreferences.getP5())){
-            matchScore += 20;
-        }
-        if(userQualifications.getQ3().equals(userPreferences.getP1()) || userQualifications.getQ3().equals(userPreferences.getP2()) ||
-                userQualifications.getQ3().equals(userPreferences.getP3()) || userQualifications.getQ3().equals(userPreferences.getP4()) ||
-                userQualifications.getQ3().equals(userPreferences.getP5())){
-            matchScore += 20;
-        }
-        if(userQualifications.getQ4().equals(userPreferences.getP1()) || userQualifications.getQ4().equals(userPreferences.getP2()) ||
-                userQualifications.getQ4().equals(userPreferences.getP3()) || userQualifications.getQ4().equals(userPreferences.getP4()) ||
-                userQualifications.getQ4().equals(userPreferences.getP5())){
-            matchScore += 20;
-        }
-        if(userQualifications.getQ5().equals(userPreferences.getP1()) || userQualifications.getQ5().equals(userPreferences.getP2()) ||
-                userQualifications.getQ5().equals(userPreferences.getP3()) || userQualifications.getQ5().equals(userPreferences.getP4()) ||
-                userQualifications.getQ5().equals(userPreferences.getP5())){
-            matchScore += 20;
-        }
+         */
         return matchScore;
     }
 
@@ -95,8 +93,11 @@ public class UserService implements UserServiceInterface {
         userRepository.save(user);
             return "User saved";
     }
-    public ResponseEntity<User> updateUser(User updatedUser){
-        return new ResponseEntity<>(userRepository.save(updatedUser), HttpStatus.ACCEPTED);
+    public String updateUser(User updatedUser){
+        User user = findUserById(updatedUser.getId());
+        user.update(updatedUser);
+        userRepository.save(user);
+        return "User have  been updated";
     }
     public String deleteUser(User user){
         User userToDelete = userRepository.findUserById(user.getId());

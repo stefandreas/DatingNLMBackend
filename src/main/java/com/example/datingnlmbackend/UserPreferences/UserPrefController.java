@@ -18,4 +18,8 @@ public class UserPrefController {
     public String save(@RequestBody UserPreferences userPreferences){
         return userPrefService.save(userPreferences);
     }
+    @PostMapping("/update")
+        public String updatePrefs(@RequestBody UserPreferences userPreferences){
+            return userPrefService.updatePrefs(userPreferences);
+    }
 }
