@@ -46,6 +46,14 @@ public class UserController {
     public User findUserByFirstnameAndLastname(String firstname, String lastname){
         return userService.findUserByFirstnameAndLastname(firstname,lastname);
 }
+@GetMapping("/findUserIdByEmail")
+    public Long findUserIdByEmail(String email){
+        return userService.findUserIdByEmail(email);
+}
+@GetMapping("/findUserByUsername")
+    public User findUserByUsername(String username){
+        return userService.findUserByUsername(username);
+}
 
 @GetMapping("/match")
     public int matchWithProfile(Long userId, Long visitedProfileId){

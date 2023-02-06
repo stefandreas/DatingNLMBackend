@@ -104,4 +104,15 @@ public class UserService implements UserServiceInterface {
         userRepository.delete(userToDelete);
             return "User "+user.getFirstname()+" "+user.getLastname()+" was deleted!";
     }
+
+    @Override
+    public Long findUserIdByEmail(String email) {
+        User user = userRepository.findUserByEmail(email);
+        return user.getId();
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
 }
