@@ -89,9 +89,8 @@ public class UserService implements UserServiceInterface {
         return matchScore;
     }
 
-    public String save(User user){
-        userRepository.save(user);
-            return "User saved";
+    public Long save(User user){
+            return userRepository.save(user).getId();
     }
     public String updateUser(User updatedUser){
         User user = findUserById(updatedUser.getId());
