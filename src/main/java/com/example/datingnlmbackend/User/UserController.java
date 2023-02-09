@@ -61,7 +61,7 @@ public class UserController {
 }
 
 @PostMapping(value = "/saveUser",consumes = "application/json")
-    public String save(@RequestBody User user ){
+    public Long save(@RequestBody User user ){
         return userService.save(user);
 }
 @PostMapping("/updateUser")
