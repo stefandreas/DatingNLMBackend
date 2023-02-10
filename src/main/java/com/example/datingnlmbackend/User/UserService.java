@@ -1,49 +1,29 @@
 package com.example.datingnlmbackend.User;
 
+import jakarta.persistence.NoResultException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+
 
 @Service
-public class UserService implements UserServiceInterface {
+@Transactional
+public class UserService {
+    private final UserRepository repository;
 
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(UserRepository repository) {
+        this.repository = repository;
     }
 
-
-    //metod för login://
-    /*@Override
-    public User login(String username, String password) {
-        User user = userRepository.checkUsername(username);
-            if (user != null && user.getPassword().equals(password)) {
-                return user;
-            }
-                return null;
-            }
-
-     */
-
-    @Override
-    public User login(String username, String password) {
-        return null;
-    }
-
-    //metod för registrering://
-    public User register(String firstname, String lastname, String username, String email, String password) {
-        if(userRepository.existsUserByUsername(username) || userRepository.existsUserByEmail(email)){
-            return null;
+    public User findById(Long id){
+        Optional<User>user = repository.findById(id);
+        if (user.isEmpty()){
+            throw new NoResultException("User not found");
         }
-        User user = new User();
-        user.setFirstname(firstname);
-        user.setLastname(lastname);
-        user.setUsername(username);
-        user.setEmail(email);
-        user.setPassword(password);
-
-        userRepository.save(user);
-        return user;
+        return user.get();
     }
+
 }
 
 
