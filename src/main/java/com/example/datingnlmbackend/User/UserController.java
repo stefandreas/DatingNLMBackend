@@ -37,6 +37,11 @@ public class UserController {
         }
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+    
+    @GetMapping("/findAllUsers")
+    public List<User> findAllUsers(){
+        return userService.findAllUsers();
+    }
 
 @GetMapping("/findUserById")
     public User findUserById(Long id){
@@ -46,9 +51,9 @@ public class UserController {
     public User findUserByFirstnameAndLastname(String firstname, String lastname){
         return userService.findUserByFirstnameAndLastname(firstname,lastname);
 }
-@GetMapping("/findUserIdByEmail")
-    public Long findUserIdByEmail(String email){
-        return userService.findUserIdByEmail(email);
+@GetMapping("/findUserByEmail")
+    public User findUserByEmail(String email){
+        return userService.findUserByEmail(email);
 }
 @GetMapping("/findUserByUsername")
     public User findUserByUsername(String username){
@@ -61,10 +66,10 @@ public class UserController {
 }
 
 @PostMapping(value = "/saveUser",consumes = "application/json")
-    public Long save(@RequestBody User user ){
+    public User save(@RequestBody User user ){
         return userService.save(user);
 }
-@PostMapping("/updateUser")
+@PostMapping(value = "/updateUser", consumes = "application/json")
     public String updateUser(@RequestBody User user){
         return userService.updateUser(user);
 }

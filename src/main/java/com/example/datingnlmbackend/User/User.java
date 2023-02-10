@@ -19,6 +19,18 @@ public class User {
     private String lastname;
     @Column(unique = true)
     private String username;
+    
+    public User(Long id, String city, String description, String email, String firstname, String gender,
+                String lastname, String username) {
+        this.id = id;
+        this.city = city;
+        this.description = description;
+        this.email = email;
+        this.firstname = firstname;
+        this.gender = gender;
+        this.lastname = lastname;
+        this.username = username;
+    }
 
     public User(String city, String description, String email, String firstname, String gender, String lastname, String username) {
         this.city = city;

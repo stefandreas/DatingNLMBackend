@@ -51,6 +51,7 @@ public class UserService implements UserServiceInterface {
         return userRepository.findById(id).orElse(null);
     }
 
+    public List<User> findAllUsers(){return userRepository.findAll();}
     public User findUserById(Long id){
         return userRepository.findUserById(id);
     }
@@ -89,8 +90,8 @@ public class UserService implements UserServiceInterface {
         return matchScore;
     }
 
-    public Long save(User user){
-            return userRepository.save(user).getId();
+    public User save(User user){
+            return userRepository.save(user);
     }
     public String updateUser(User updatedUser){
         User user = findUserById(updatedUser.getId());
@@ -105,9 +106,8 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public Long findUserIdByEmail(String email) {
-        User user = userRepository.findUserByEmail(email);
-        return user.getId();
+    public User findUserByEmail(String email) {
+        return userRepository.findUserByEmail(email);
     }
 
     @Override
