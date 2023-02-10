@@ -1,13 +1,14 @@
 package com.example.datingnlmbackend.Qualification;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping(path = "/qualifications")
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "/qualification")
 public class QualificationController {
 
     QualificationService qualificationService;
@@ -15,5 +16,9 @@ public class QualificationController {
     public QualificationController(QualificationService qualificationService) {
         this.qualificationService = qualificationService;
     }
-
+    
+    @GetMapping ("/findAllQualification")
+    public List<Qualification> findAllQualifications(){
+        return qualificationService.findAllQualification();
+    }
 }
