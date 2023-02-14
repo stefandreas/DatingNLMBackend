@@ -31,22 +31,6 @@ public class UserService implements UserServiceInterface {
         this.userPrefRepository = userPrefRepository;
     }
 
-    @Override
-    public User saveUserWithQualifications(UserDTO userDTO) {
-        User user = new User();
-        user.setFirstname(userDTO.getFirstname());
-        user.setLastname(userDTO.getLastname());
-        List<Qualification> qualifications = new ArrayList<>();
-        for (String qual : userDTO.getQualifications()) {
-            Qualification qualification = qualificationRepository.findByQualification(qual);
-            if (qualification != null) {
-                qualifications.add(qualification);
-            }
-        }
-       // user.setQualifications(qualifications);
-        return userRepository.save(user);
-    }
-
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }

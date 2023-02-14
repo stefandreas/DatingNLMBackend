@@ -9,14 +9,10 @@ public class UserDTO {
     private String firstname;
     private String lastname;
     private String username;
-
     private String email;
-    private String password;
     private String gender;
     private String city;
     private String description;
-    private List<String> qualifications;
-    private List<String> preferredQualifications;
 
 
     public Long getId() {
@@ -41,14 +37,6 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getGender() {
@@ -90,21 +78,5 @@ public class UserDTO {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public List<String> getQualifications() {
-        return qualifications;
-    }
-
-    public void setQualifications(List<String> qualifications) {
-        this.qualifications = qualifications;
-    }
-
-    public List<String> getPreferredQualifications() {
-        return preferredQualifications;
-    }
-
-    public void setPreferredQualifications(List<String> preferredQualifications) {
-        this.preferredQualifications = preferredQualifications;
     }
 }
