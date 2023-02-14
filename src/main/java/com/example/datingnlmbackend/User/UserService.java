@@ -17,7 +17,6 @@ import java.util.List;
 
 @Service
 public class UserService implements UserServiceInterface {
-
     private final UserRepository userRepository;
     private final QualificationRepository qualificationRepository;
     private final UserQRepository userQRepository;
@@ -30,7 +29,12 @@ public class UserService implements UserServiceInterface {
         this.userQRepository = userQRepository;
         this.userPrefRepository = userPrefRepository;
     }
-
+    
+    @Override
+    public User saveUserWithQualifications(UserDTO userDTO) {
+        return null;
+    }
+    
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
     }

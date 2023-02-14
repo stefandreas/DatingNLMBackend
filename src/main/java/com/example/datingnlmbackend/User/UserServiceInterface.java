@@ -10,7 +10,6 @@ public interface UserServiceInterface {
     //User register(User user, List<String> qualifications);
     User saveUserWithQualifications(UserDTO userDTO);
     User getUserById(Long id);
-    
     List<User> findAllUsers();
     User findUserById(Long userId);
     User findUserByFirstnameAndLastname(String firstname, String lastname);
