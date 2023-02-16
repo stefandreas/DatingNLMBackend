@@ -1,16 +1,23 @@
 package com.example.datingnlmbackend.User;
 
-import com.example.datingnlmbackend.Qualification.Qualification;
+import com.example.datingnlmbackend.ContactRequest.ContactRequest;
+import com.example.datingnlmbackend.friend.Friend;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String firstname;
     private String lastname;
@@ -63,6 +70,9 @@ public class User {
         return city;
     }
 
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<ContactRequest> contactRequestList;
     public void setCity(String city) {
         this.city = city;
     }
@@ -91,29 +101,8 @@ public class User {
         this.firstname = firstname;
     }
 
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public String getUsername() {return username;}
-
-    public void setUsername(String username) {this.username = username;}
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {return password; }
-
-    public void setPassword(String password) {this.password = password; }
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Friend>friends;
 
 }
